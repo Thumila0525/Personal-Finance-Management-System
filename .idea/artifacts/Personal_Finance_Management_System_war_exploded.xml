@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="Personal-Finance-Management-System:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/Personal_Finance_Management_System_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="Personal-Finance-Management-System/web/Web" />
+    </root>
+  </artifact>
+</component>
