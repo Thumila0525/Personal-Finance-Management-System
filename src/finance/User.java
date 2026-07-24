@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package finance.management.system.pkg0.pkg1;
+package finance;
 
 /**
  *
@@ -18,6 +18,8 @@ public class User {
     private static final int MAX_TRANSACTIONS = 100;
 
     private String name;
+    private String email;
+    protected String password;
     private Account[] accounts;
     private int accountCount;
 
@@ -26,12 +28,20 @@ public class User {
 
     private int nextTransactionId;
 
-    public User(String name) {
+    public User(String name, String email, String password) {
         try {
             if (name == null || name.trim().isEmpty()) {
                 throw new IllegalArgumentException("User name cannot be empty.");
             }
+            if (email == null || email.trim().isEmpty()) {
+                throw new IllegalArgumentException("User email cannot be empty.");
+            }
+            if (password == null || password.isEmpty()) {
+                throw new IllegalArgumentException("User password cannot be empty.");
+            }
             this.name = name.trim();
+            this.email = email.trim();
+            this.password = password;
             this.accounts = new Account[MAX_ACCOUNTS];
             this.accountCount = 0;
             this.transactions = new Transaction[MAX_TRANSACTIONS];
@@ -46,7 +56,11 @@ public class User {
         return name;
     }
 
-    public boolean addAccount(Account account) {
+    public String getEmail() {
+        return email;
+    }
+
+    public Account addAccount(Account account) {
         try {
             if (account == null) {
                 throw new IllegalArgumentException("Account cannot be null.");
@@ -58,10 +72,10 @@ public class User {
                 throw new IllegalArgumentException("Account ID " + account.getAccountId() + " is already in use.");
             }
             accounts[accountCount++] = account;
-            return true;
+            return account;
         } catch (IllegalArgumentException ex) {
             System.err.println("Failed to add account: " + ex.getMessage());
-            return false;
+            return null;
         }
     }
 

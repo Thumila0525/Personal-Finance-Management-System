@@ -1,4 +1,4 @@
-package finance.management.system.pkg0.pkg1;
+package finance;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
