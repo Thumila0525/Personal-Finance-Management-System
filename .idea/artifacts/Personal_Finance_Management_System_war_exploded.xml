@@ -3,6 +3,7 @@
     <output-path>$PROJECT_DIR$/out/artifacts/Personal_Finance_Management_System_war_exploded</output-path>
     <root id="root">
       <element id="javaee-facet-resources" facet="Personal-Finance-Management-System/web/Web" />
+      <element id="dir-copy" path="$PROJECT_DIR$/web" />
     </root>
   </artifact>
 </component>
