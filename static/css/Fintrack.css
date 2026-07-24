@@ -262,6 +262,21 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     font-size: 13px;
 }
 
+/* The side panel keeps a hardcoded dark background in both themes (it's a
+   fixed decorative surface, not the page background), so its text must stay
+   pinned to light values instead of following --text / --text-dim, which flip
+   dark in light mode and would otherwise disappear against this panel. */
+:root[data-theme="light"] .auth-side .brand-mark,
+:root[data-theme="light"] .auth-side-copy h1 {
+    color: #e9eef3;
+}
+:root[data-theme="light"] .auth-side-copy p {
+    color: #9aa7b4;
+}
+:root[data-theme="light"] .auth-side-foot {
+    color: #6b7684;
+}
+
 .auth-main {
     display: flex;
     align-items: center;
@@ -1855,6 +1870,12 @@ body {
 .cta-banner h2 { font-size: clamp(22px, 2.6vw, 28px); max-width: 480px; z-index: 1; }
 .cta-banner p { color: var(--text-dim); margin-top: 10px; font-size: 14.5px; z-index: 1; }
 .cta-banner .btn { width: auto; padding: 13px 26px; z-index: 1; }
+
+/* This banner keeps a hardcoded dark background in both themes (a fixed
+   decorative surface, not the page background), so its text must stay pinned
+   to light values instead of following --text / --text-dim. */
+:root[data-theme="light"] .cta-banner h2 { color: #e9eef3; }
+:root[data-theme="light"] .cta-banner p { color: #9aa7b4; }
 
 /* Footer */
 .site-footer {

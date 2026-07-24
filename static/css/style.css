@@ -10,7 +10,7 @@
 :root {
   --bg: #0b0f14;
   --bg-glow: radial-gradient(1200px 600px at 15% -10%, #10221c 0%, transparent 60%),
-             radial-gradient(900px 500px at 110% 10%, #1a1420 0%, transparent 55%);
+  radial-gradient(900px 500px at 110% 10%, #1a1420 0%, transparent 55%);
   --surface: #12181f;
   --surface-2: #171f27;
   --surface-3: #1c252f;
@@ -47,7 +47,7 @@
 :root[data-theme="light"] {
   --bg: #f3f5f8;
   --bg-glow: radial-gradient(1200px 600px at 15% -10%, #e4f4ec 0%, transparent 60%),
-             radial-gradient(900px 500px at 110% 10%, #f1e8f7 0%, transparent 55%);
+  radial-gradient(900px 500px at 110% 10%, #f1e8f7 0%, transparent 55%);
   --surface: #ffffff;
   --surface-2: #f7f9fb;
   --surface-3: #eef1f5;
@@ -94,8 +94,8 @@ html { color-scheme: dark; }
 a, button, input, select, .card, .stat-card, .account-row, .tx-row,
 .nav-link, .progress-fill, .modal, .modal-overlay, .toast {
   transition: background-color .18s var(--ease), border-color .18s var(--ease),
-    color .18s var(--ease), transform .18s var(--ease), box-shadow .18s var(--ease),
-    opacity .18s var(--ease);
+  color .18s var(--ease), transform .18s var(--ease), box-shadow .18s var(--ease),
+  opacity .18s var(--ease);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -214,8 +214,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   position: absolute;
   inset: 0;
   background-image:
-    repeating-linear-gradient(0deg, rgba(255,255,255,0.025) 0 1px, transparent 1px 34px),
-    repeating-linear-gradient(90deg, rgba(255,255,255,0.025) 0 1px, transparent 1px 34px);
+          repeating-linear-gradient(0deg, rgba(255,255,255,0.025) 0 1px, transparent 1px 34px),
+          repeating-linear-gradient(90deg, rgba(255,255,255,0.025) 0 1px, transparent 1px 34px);
   mask-image: radial-gradient(circle at 30% 20%, black, transparent 70%);
   pointer-events: none;
 }
@@ -260,6 +260,21 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   z-index: 1;
   color: var(--text-faint);
   font-size: 13px;
+}
+
+/* The side panel keeps a hardcoded dark background in both themes (it's a
+   fixed decorative surface, not the page background), so its text must stay
+   pinned to light values instead of following --text / --text-dim, which flip
+   dark in light mode and would otherwise disappear against this panel. */
+:root[data-theme="light"] .auth-side .brand-mark,
+:root[data-theme="light"] .auth-side-copy h1 {
+  color: #e9eef3;
+}
+:root[data-theme="light"] .auth-side-copy p {
+  color: #9aa7b4;
+}
+:root[data-theme="light"] .auth-side-foot {
+  color: #6b7684;
 }
 
 .auth-main {
@@ -399,12 +414,12 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .alert.show { display: flex; }
 .alert-error {
   background: var(--coral-dim);
-  color: #ffb3ab;
+  color: var(--coral);
   border: 1px solid rgba(255,122,111,0.35);
 }
 .alert-success {
   background: var(--mint-dim);
-  color: #a9f0cf;
+  color: var(--mint);
   border: 1px solid rgba(69,217,154,0.35);
 }
 
@@ -536,8 +551,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   position: absolute;
   top: -1px; left: 0; right: 0; height: 8px;
   background:
-    linear-gradient(-45deg, var(--bg) 5px, transparent 0),
-    linear-gradient(45deg, var(--bg) 5px, transparent 0);
+          linear-gradient(-45deg, var(--bg) 5px, transparent 0),
+          linear-gradient(45deg, var(--bg) 5px, transparent 0);
   background-size: 12px 12px;
   background-position: left top;
   background-repeat: repeat-x;
