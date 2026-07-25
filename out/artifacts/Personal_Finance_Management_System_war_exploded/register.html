@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0b0f14">
+    <title>Create account · FinTrack</title>
+    <link rel="icon" type="image/svg+xml" href="static/favicon.svg">
+    <link rel="stylesheet" href="static/css/Fintrack.css">
+    <script src="static/js/theme.js"></script>
+</head>
+<body>
+
+<button class="theme-toggle" aria-label="Toggle theme" style="position:fixed; top:20px; right:20px; z-index:10;">
+  <span class="knob">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 4V2M12 22v-2M4 12H2M22 12h-2M5 5l-1.4-1.4M19 19l-1.4-1.4M5 19l-1.4 1.4M19 5l-1.4 1.4"/><circle cx="12" cy="12" r="5"/></svg>
+  </span>
+</button>
+
+<div class="auth-shell">
+    <div class="auth-side">
+        <div class="brand-mark"><span class="dot"></span> FinTrack</div>
+
+        <div class="auth-side-copy">
+            <h1>One account.<br>Every Rupee<br>tracked.</h1>
+            <p>Create your FinTrack account to start logging income, expenses and transfers across every account you own — bank, credit or virtual.</p>
+        </div>
+
+        <svg class="side-sparkline" width="320" height="90" viewBox="0 0 320 90" fill="none">
+            <polyline points="0,60 30,55 60,65 90,40 120,48 150,20 180,32 210,15 240,25 270,10 300,18 320,8"
+                      stroke="#45d99a" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="0,60 30,55 60,65 90,40 120,48 150,20 180,32 210,15 240,25 270,10 300,18 320,8 320,90 0,90"
+                      fill="url(#g1)" opacity="0.18" stroke="none"/>
+            <defs>
+                <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#45d99a"/>
+                    <stop offset="100%" stop-color="#45d99a" stop-opacity="0"/>
+                </linearGradient>
+            </defs>
+        </svg>
+
+        <div class="auth-side-foot">FinTrack · Personal Finance Management System</div>
+    </div>
+
+    <div class="auth-main">
+        <div class="auth-card">
+            <div class="auth-card-head">
+                <span class="eyebrow">Get started</span>
+                <h2>Create your account</h2>
+                <p>Set up your ledger in under a minute.</p>
+            </div>
+
+            <div class="alert alert-error" id="alertBox"></div>
+
+            <form id="registerForm" novalidate>
+                <div class="field">
+                    <label for="fullName">Full name</label>
+                    <input type="text" id="fullName" name="fullName" placeholder="Your full name" autocomplete="name" required>
+                </div>
+
+                <div class="field">
+                    <label for="email">Email address</label>
+                    <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+                </div>
+
+                <div class="field field-with-action">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Create a password" autocomplete="new-password" minlength="8" required>
+                    <button type="button" class="field-toggle-btn" data-toggle-password="password" aria-label="Show password">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>
+                    </button>
+                    <div class="field-hint">Use at least 8 characters.</div>
+                </div>
+
+                <div class="field field-with-action">
+                    <label for="confirmPassword">Confirm password</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-enter your password" autocomplete="new-password" minlength="8" required>
+                    <button type="button" class="field-toggle-btn" data-toggle-password="confirmPassword" aria-label="Show password">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>
+                    </button>
+                </div>
+
+                <div class="checkbox-row">
+                    <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
+                    <label for="agreeTerms">I agree to the <a href="terms.html">Terms of Service</a> and <a href="privacy.html">Privacy Policy</a>.</label>
+                </div>
+
+                <button type="submit" class="btn btn-primary" id="submitBtn">Create account</button>
+            </form>
+
+            <div class="auth-switch">
+                Already have an account? <a href="login.html">Log in</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="static/js/password-toggle.js"></script>
+<script src="static/js/register.js"></script>
+</body>
+</html>

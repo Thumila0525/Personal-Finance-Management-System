@@ -2,12 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package finance.management.system.pkg0.pkg1;
+package finance;
 
-/**
- *
- * @author User
- */
 /**
  * Represents a user of the finance management system.
  * Uses fixed-size arrays (no ArrayList) to store accounts and transactions,
@@ -17,7 +13,11 @@ public class User {
     private static final int MAX_ACCOUNTS = 10;
     private static final int MAX_TRANSACTIONS = 100;
 
-    private String name;
+    private int id;
+    private String username;
+    private String email;
+    private String password;
+
     private Account[] accounts;
     private int accountCount;
 
@@ -26,12 +26,29 @@ public class User {
 
     private int nextTransactionId;
 
-    public User(String name) {
+    // Default constructor added for DAO/Servlet instantiation
+    public User() {
+        this.accounts = new Account[MAX_ACCOUNTS];
+        this.accountCount = 0;
+        this.transactions = new Transaction[MAX_TRANSACTIONS];
+        this.transactionCount = 0;
+        this.nextTransactionId = 1;
+    }
+
+    public User(String username, String email, String password) {
         try {
-            if (name == null || name.trim().isEmpty()) {
-                throw new IllegalArgumentException("User name cannot be empty.");
+            if (username == null || username.trim().isEmpty()) {
+                throw new IllegalArgumentException("User username cannot be empty.");
             }
-            this.name = name.trim();
+            if (email == null || email.trim().isEmpty()) {
+                throw new IllegalArgumentException("User email cannot be empty.");
+            }
+            if (password == null || password.isEmpty()) {
+                throw new IllegalArgumentException("User password cannot be empty.");
+            }
+            this.username = username.trim();
+            this.email = email.trim();
+            this.password = password;
             this.accounts = new Account[MAX_ACCOUNTS];
             this.accountCount = 0;
             this.transactions = new Transaction[MAX_TRANSACTIONS];
@@ -42,11 +59,43 @@ public class User {
         }
     }
 
-    public String getName() {
-        return name;
+    // --- Getters and Setters ---
+
+    public int getId() {
+        return id;
     }
 
-    public boolean addAccount(Account account) {
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    // --- Core Methods ---
+
+    public Account addAccount(Account account) {
         try {
             if (account == null) {
                 throw new IllegalArgumentException("Account cannot be null.");
@@ -58,10 +107,10 @@ public class User {
                 throw new IllegalArgumentException("Account ID " + account.getAccountId() + " is already in use.");
             }
             accounts[accountCount++] = account;
-            return true;
+            return account;
         } catch (IllegalArgumentException ex) {
             System.err.println("Failed to add account: " + ex.getMessage());
-            return false;
+            return null;
         }
     }
 
@@ -148,7 +197,7 @@ public class User {
 
     public void printAccounts() {
         try {
-            System.out.println("Accounts for " + name + ":");
+            System.out.println("Accounts for " + username + ":");
             for (int i = 0; i < accountCount; i++) {
                 System.out.println("  " + accounts[i]);
             }
@@ -159,7 +208,7 @@ public class User {
 
     public void printTransactions() {
         try {
-            System.out.println("Transaction history for " + name + ":");
+            System.out.println("Transaction history for " + username + ":");
             for (int i = 0; i < transactionCount; i++) {
                 System.out.println("  " + transactions[i]);
             }
